@@ -1,11 +1,12 @@
 package com.shinhancard.izeventpage.common.entitiy;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -13,15 +14,15 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class Event {
+public class Log {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long eventId;
-    @Column(length = 30, nullable = false)
-    private String name;
-    @Column(length = 100, nullable = true)
-    private String desc;
-    @Column(length = 5, nullable = false)
-    private int count = 0;
+    Long id;
+    @Column
+    Long eventId;
+    @Column
+    int eventCcd;
+    @Column
+    LocalDateTime niRgDt;
 }
