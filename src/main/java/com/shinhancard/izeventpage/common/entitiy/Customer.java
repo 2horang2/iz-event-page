@@ -33,8 +33,6 @@ public class Customer {
     String hdp2;
     @Column(length = 4, nullable = true)
     String hdp3;
-    @Column(nullable = false)
-    Long eventId;
 
     @Column
     LocalDateTime niRgDt;

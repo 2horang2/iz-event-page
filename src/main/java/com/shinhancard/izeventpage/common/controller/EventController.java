@@ -4,7 +4,6 @@ import com.shinhancard.izeventpage.common.entitiy.Customer;
 import com.shinhancard.izeventpage.common.entitiy.Event;
 import com.shinhancard.izeventpage.common.repository.CustomerRepository;
 import com.shinhancard.izeventpage.common.repository.EventRepository;
-import com.shinhancard.izeventpage.common.vo.EventVo;
 import com.shinhancard.izeventpage.common.vo.ResponseVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -29,22 +31,13 @@ public class EventController {
     @Autowired
     CustomerRepository customerRepository;
 
-    @GetMapping(value = "/sampleGetApi")
-    public ResponseEntity<ResponseVo> sampleGetApi(@RequestParam String id) throws Exception {
-
-        if (id.equals("1"))
-            throw new Exception("실패입니다.");
-
-        ResponseVo responseVo = new ResponseVo("00", "성공입니다.");
-        return new ResponseEntity<>(responseVo, HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/samplePostApi")
-    public ResponseEntity<ResponseVo> samplePostApi(@RequestBody EventVo input) {
-        ResponseVo responseVo = new ResponseVo();
-        return new ResponseEntity<>(responseVo, HttpStatus.OK);
-    }
-
+    @Operation(summary = "페이지방문 수 증가 API", description = "페이지 방문 시, 페이지 방문수가 증가되는 API")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK !!"),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+    })
     @GetMapping(value = "/visitEventPage")
     public ResponseEntity<ResponseVo> visitEventPage(@RequestParam Long eventId) throws Exception {
 
@@ -57,8 +50,16 @@ public class EventController {
         return new ResponseEntity<>(responseVo, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/bookingEvent")
-    public ResponseEntity<ResponseVo> bookingEvent(@RequestParam Customer customer) throws Exception {
+    @Operation(summary = "고객 사전예약 API", description = "이벤트 페이지 내에서 고객이 입력한 사전예약 정보를 저장하는 API")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK !!"),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+    })
+
+    @PostMapping(value = "/bookingEvent")
+    public ResponseEntity<ResponseVo> bookingEvent(@RequestBody Customer customer) throws Exception {
 
         log.debug("bookingEvent : " + customer);
 
