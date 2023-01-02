@@ -1,6 +1,8 @@
 package com.shinhancard.izeventpage.common.controller;
 
+import com.shinhancard.izeventpage.common.entitiy.Customer;
 import com.shinhancard.izeventpage.common.entitiy.Event;
+import com.shinhancard.izeventpage.common.repository.CustomerRepository;
 import com.shinhancard.izeventpage.common.repository.EventRepository;
 import com.shinhancard.izeventpage.common.vo.EventVo;
 import com.shinhancard.izeventpage.common.vo.ResponseVo;
@@ -24,6 +26,8 @@ public class EventController {
 
     @Autowired
     EventRepository eventRepository;
+    @Autowired
+    CustomerRepository customerRepository;
 
     @GetMapping(value = "/sampleGetApi")
     public ResponseEntity<ResponseVo> sampleGetApi(@RequestParam String id) throws Exception {
@@ -51,5 +55,22 @@ public class EventController {
 
         ResponseVo responseVo = new ResponseVo("00", "성공입니다.");
         return new ResponseEntity<>(responseVo, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/bookingEvent")
+    public ResponseEntity<ResponseVo> bookingEvent(@RequestParam Customer customer) throws Exception {
+
+        log.debug("bookingEvent : " + customer);
+
+        ResponseVo responseVo = new ResponseVo("00", "성공입니다.");
+        try {
+            customerRepository.save(customer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(new ResponseVo("99", "실패입니다."), HttpStatus.EXPECTATION_FAILED);
+        }
+
+        return new ResponseEntity<>(responseVo, HttpStatus.OK);
+
     }
 }
