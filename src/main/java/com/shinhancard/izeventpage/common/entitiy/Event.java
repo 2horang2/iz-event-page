@@ -8,11 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Event {
 
     @Id
@@ -24,4 +28,8 @@ public class Event {
     private String desc;
     @Column(length = 5, nullable = false)
     private int count = 0;
+
+    public void increaseCount() {
+        this.count++;
+    }
 }
