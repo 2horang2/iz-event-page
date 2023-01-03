@@ -24,6 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping(value = "iz/api")
 @Slf4j
+@ApiResponses({
+        @ApiResponse(responseCode = "200", description = "OK !!"),
+        @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
+        @ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
+        @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+})
 public class EventController {
 
     @Autowired
@@ -32,12 +38,6 @@ public class EventController {
     CustomerRepository customerRepository;
 
     @Operation(summary = "페이지방문 수 증가 API", description = "페이지 방문 시, 페이지 방문수가 증가되는 API")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK !!"),
-            @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
-    })
     @GetMapping(value = "/visitEventPage")
     public ResponseEntity<ResponseVo> visitEventPage(@RequestParam Long eventId) throws Exception {
 
@@ -51,13 +51,6 @@ public class EventController {
     }
 
     @Operation(summary = "고객 사전예약 API", description = "이벤트 페이지 내에서 고객이 입력한 사전예약 정보를 저장하는 API")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK !!"),
-            @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
-    })
-
     @PostMapping(value = "/bookingEvent")
     public ResponseEntity<ResponseVo> bookingEvent(@RequestBody Customer customer) throws Exception {
 
