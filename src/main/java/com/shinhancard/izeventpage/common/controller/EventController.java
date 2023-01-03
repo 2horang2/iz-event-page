@@ -2,8 +2,11 @@ package com.shinhancard.izeventpage.common.controller;
 
 import com.shinhancard.izeventpage.common.entitiy.Customer;
 import com.shinhancard.izeventpage.common.entitiy.Event;
+import com.shinhancard.izeventpage.common.entitiy.Log;
 import com.shinhancard.izeventpage.common.repository.CustomerRepository;
 import com.shinhancard.izeventpage.common.repository.EventRepository;
+import com.shinhancard.izeventpage.common.repository.LogRepository;
+import com.shinhancard.izeventpage.common.util.DateUtil;
 import com.shinhancard.izeventpage.common.vo.ResponseVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,8 @@ public class EventController {
     EventRepository eventRepository;
     @Autowired
     CustomerRepository customerRepository;
+    @Autowired
+    LogRepository logRepository;
 
     @Operation(summary = "페이지방문 수 증가 API", description = "페이지 방문 시, 페이지 방문수가 증가되는 API")
     @GetMapping(value = "/visitEventPage")
@@ -45,6 +50,13 @@ public class EventController {
         event.increaseCount();
         eventRepository.save(event);
         log.debug("visitEventPage : " + event);
+
+        Log logVo = new Log(0L, eventId, 1, DateUtil.getDate("yyyyMMddHHmmss"));
+        log.debug("visitEventPage : " + logVo.toString());
+
+        logRepository.save(logVo);
+
+        log.debug("visitEventPage : " + logRepository.findAll());
 
         ResponseVo responseVo = new ResponseVo("00", "성공입니다.");
         return new ResponseEntity<>(responseVo, HttpStatus.OK);

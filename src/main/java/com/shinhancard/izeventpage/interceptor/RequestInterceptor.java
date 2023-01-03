@@ -16,20 +16,20 @@ public class RequestInterceptor implements HandlerInterceptor {
 
     @PostConstruct
     public void init() {
-        log.info("[aop-test] interceptor : RequestInterceptor init()");
+        // log.info("[aop-test] interceptor : RequestInterceptor init()");
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        log.info("[aop-test] interceptor : RequestInterceptor preHandle()");
+        // log.info("[aop-test] interceptor : RequestInterceptor preHandle()");
         return true;
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
             @Nullable Exception ex) throws Exception {
-        log.info("[aop-test]  interceptor : RequestInterceptor afterCompletion()");
+        // log.info("[aop-test] interceptor : RequestInterceptor afterCompletion()");
     }
 
 }
