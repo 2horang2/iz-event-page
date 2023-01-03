@@ -1,8 +1,32 @@
 project:
   envCcd: P
+server:
+  port: 80
+  address: 10.0.0.65
 logging:
   pattern:
-    console: "%white([%d{yyyy-MM-dd HH:mm:ss}]) %yellow([%thread]) %highlight(%-5level) %white(%logger{35} -  %msg  %n)"
+    console: "%white([%d{yyyy-MM-dd HH:mm:ss}]) %yellow([%thread]) %highlight([%-5level]) %white([%-35logger{35}]) %white(%msg  %n)"
   level:
     root: WARN
     com.shinhancard: DEBUG
+    jpa: DEBUG
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: admin
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+    show-sql: true
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+  sql:
+    init:
+      data-locations: classpath*:db/h2/data.sql
