@@ -1,0 +1,8 @@
+project:
+  envCcd: P
+logging:
+  pattern:
+    console: "%white([%d{yyyy-MM-dd HH:mm:ss}]) %yellow([%thread]) %highlight(%-5level) %white(%logger{35} -  %msg  %n)"
+  level:
+    root: WARN
+    com.shinhancard: DEBUG
