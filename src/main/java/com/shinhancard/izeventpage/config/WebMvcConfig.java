@@ -25,6 +25,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         registry.addResourceHandler("/**").addResourceLocations("classpath:/templates/", "classpath:/static/")
                 .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
+
     }
 
     @Override
