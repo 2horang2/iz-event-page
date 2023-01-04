@@ -21,11 +21,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     ResponseInterceptor responseInterceptor;
 
     @Override
+  
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("/**").addResourceLocations("classpath:/templates/", "classpath:/static/")
                 .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
-
     }
 
     @Override
@@ -33,7 +33,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(requestInterceptor).addPathPatterns("/**");
         registry.addInterceptor(responseInterceptor).addPathPatterns("/**");
-
     }
 
 }
