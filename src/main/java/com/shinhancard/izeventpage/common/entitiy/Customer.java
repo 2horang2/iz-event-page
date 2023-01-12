@@ -37,8 +37,4 @@ public class Customer {
     @Column
     LocalDateTime niRgDt;
 
-    @OneToOne
-    @JoinColumn(name = "eventId")
-    Event event;
-
 }

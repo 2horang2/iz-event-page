@@ -1,5 +1,7 @@
 package com.shinhancard.izeventpage.common.controller;
 
+import java.util.Optional;
+
 import com.shinhancard.izeventpage.common.entitiy.Customer;
 import com.shinhancard.izeventpage.common.entitiy.Event;
 import com.shinhancard.izeventpage.common.entitiy.Log;
@@ -46,7 +48,7 @@ public class EventController {
     @GetMapping(value = "/visitEventPage")
     public ResponseEntity<ResponseVo> visitEventPage(@RequestParam Long eventId) throws Exception {
 
-        Event event = eventRepository.findByEventId((long) eventId);
+        Event event = eventRepository.findById((long) eventId).get();
         event.increaseCount();
         eventRepository.save(event);
         log.debug("visitEventPage : " + event);
