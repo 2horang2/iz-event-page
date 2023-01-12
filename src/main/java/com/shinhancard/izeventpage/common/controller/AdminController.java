@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(value = "iz/api/admin")
 @Slf4j
+@RequiredArgsConstructor
 public class AdminController {
-    @Autowired
-    EventRepository eventRepository;
-    @Autowired
-    CustomerRepository customerRepository;
+    final private EventRepository eventRepository;
+    final private CustomerRepository customerRepository;
 
     @Operation(summary = "이벤트정보 전체조회 API", description = "현재 운영중인 이벤트 정보를 모두 보여주는 API")
     @GetMapping(value = "/findAllEvent")
@@ -84,7 +84,7 @@ public class AdminController {
 
         ResponseVo responseVo = new ResponseVo("00", "성공입니다.");
         try {
-            eventRepository.deleteByEventId(eventId);
+            eventRepository.deleteById((long) eventId);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(new ResponseVo("99", "실패입니다."), HttpStatus.EXPECTATION_FAILED);
@@ -101,7 +101,7 @@ public class AdminController {
 
         ResponseVo responseVo = new ResponseVo("00", "성공입니다.");
         try {
-            eventRepository.deleteByEventId(event.getEventId());
+            eventRepository.deleteById(event.getId());
             eventRepository.save(event);
         } catch (Exception e) {
             e.printStackTrace();
