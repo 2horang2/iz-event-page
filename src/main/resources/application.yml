@@ -5,4 +5,3 @@ spring:
   mvc:
     view:
       suffix: .html
-    static-path-pattern: /static/**
