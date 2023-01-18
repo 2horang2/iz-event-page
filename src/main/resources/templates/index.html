@@ -38,7 +38,8 @@
 									</header>
 									<div class="content">
 										<p><strong>관심있는 서비스분야를 입력해주세요</strong> <br></p>
-										<form>
+										<form name="inputForm" method="post" action="/iz/event-page/submit.do" >
+
 											<div class="fields">
 												<div class="field half">
 													<input type="text" name="name" id="name" placeholder="성함" />
@@ -49,7 +50,7 @@
 													<input type="email" name="email" id="email" placeholder="이메일" />
 												</div>
 												<div class="field half">
-													<input type="tel" name="tel" id="tel" placeholder="연락처" />
+													<input type="tel" name="hdp" id="hdp" placeholder="연락처" />
 												</div>
 												<div class="field">
 													<select type="select" name="favorite" id="favorite" placeholder="관심있는 공공서비스"   >
@@ -64,15 +65,12 @@
 													<textarea name="message" id="message" placeholder="기타 요청사항" rows="3"></textarea>
 												</div>
 												<div class="field">
-													<input type="checkbox" id="info1" name="info1" value="Y" checked >
-													<label for="scales"><a href="/info1.html" target="_blank">개인정보 수집 및 이용에 </a>  동의합니다.</label>
+													<input type="checkbox" id="info1" name="info1" >
+													<label for="info1"><a href="/info1.html" target="_blank">개인정보 수집 및 이용에 </a>  동의합니다.</label>
 												  </div>
-										
-
-  
-											</div>
+												</div>
 											<ul class="actions">												
-												<li><a href="#" input type="submit" class="button primary large">사전예약 등록</a></li>
+												<li><a href="/"><button class="button primary large"> 사전예약 등록 </button></a> </li>
 											</ul>
 										</form>
 									</div>
