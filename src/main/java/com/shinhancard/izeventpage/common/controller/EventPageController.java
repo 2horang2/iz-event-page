@@ -44,7 +44,7 @@ public class EventPageController {
 
         try {
             Log log = new Log();
-            log.setIp(request.getLocalAddr());
+            log.setIp(request.getRemoteAddr());
             log.setIp(request.getHeader("referer"));
             log.setAgent(request.getHeader("User-Agent"));
             logRepository.save(log);

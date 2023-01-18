@@ -12,6 +12,46 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script type="text/javascript">
+			
+			function validate(){
+
+		
+				
+				/* 이름 유효성 검사 */
+				if(inputForm.name.value.length == 0){
+					alert("이름을 입력해주세요.");
+					inputForm.name.focus(); 
+					return false;
+				}
+				
+				
+				if(inputForm.hdp.value.length == 0 ){
+					alert("전화번호를 입력해주세요.");
+					inputForm.hdp.focus(); 
+					return false;
+				}
+				
+				if(isNaN(inputForm.hdp.value)){
+					alert("전화번호는 숫자만 입력가능합니다.");
+					myform.phone1.focus(); 
+					return false;
+				}
+				
+				
+
+
+				if(inputForm.info1.checked == false){
+					alert("개인정보 활용동의를 해주셔야됩니다.");
+					inputForm.info1.focus(); 
+					return false;
+				}				
+				
+					
+				alert("사전예약이 정상 신청되었습니다.");
+				
+			}
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -38,7 +78,7 @@
 									</header>
 									<div class="content">
 										<p><strong>관심있는 서비스분야를 입력해주세요</strong> <br></p>
-										<form name="inputForm" method="post" action="/iz/event-page/submit.do" >
+										<form name="inputForm" id="inputForm" method="post" action="/iz/event-page/submit.do" >
 
 											<div class="fields">
 												<div class="field half">
@@ -70,7 +110,7 @@
 												  </div>
 												</div>
 											<ul class="actions">												
-												<li><a href="/"><button class="button primary large"> 사전예약 등록 </button></a> </li>
+												<li><button class="button primary large" onclick="return validate()"> 사전예약 등록 </button></li>
 											</ul>
 										</form>
 									</div>
