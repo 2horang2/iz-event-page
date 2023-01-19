@@ -31,7 +31,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 
 	//mysql 서버 추가
-	implementation 'mysql:mysql-connector-java'
+	runtimeOnly 'mysql:mysql-connector-java'
 
 
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
