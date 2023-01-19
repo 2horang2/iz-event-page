@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,14 +26,21 @@ public class Customer {
     Long id;
     @Column(length = 30, nullable = false)
     String name;
-    @Column(length = 4, nullable = true)
-    String hdp1;
-    @Column(length = 4, nullable = true)
-    String hdp2;
-    @Column(length = 4, nullable = true)
-    String hdp3;
+    @Column(length = 12, nullable = true)
+    String hdp;
+    @Column(length = 50, nullable = true)
+    String email;
+    @Column(length = 20, nullable = true)
+    String favorite;
+    @Column(length = 500, nullable = true)
+    String message;
 
     @Column
     LocalDateTime niRgDt;
+
+    @PrePersist
+    public void createdAt() {
+        this.niRgDt = LocalDateTime.now();
+    }
 
 }

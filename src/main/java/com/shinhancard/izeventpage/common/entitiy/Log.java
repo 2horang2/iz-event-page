@@ -1,10 +1,13 @@
 package com.shinhancard.izeventpage.common.entitiy;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,10 +25,17 @@ public class Log {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @Column
-    Long eventId;
+    String ip;
     @Column
-    int eventCcd;
+    String agent;
     @Column
-    String niRgDt;
+    String refer;
+    @Column
+    LocalDateTime niRgDt;
+
+    @PrePersist
+    public void createdAt() {
+        this.niRgDt = LocalDateTime.now();
+    }
 
 }
